@@ -15,10 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bangun Ruang',
+      title: 'Geometry Calculator',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.green.shade400)),
-      home: const MainPage(title: 'Perhitungan Bangun Ruang'),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: Colors.green.shade600),
+      ),
+      home: const MainPage(title: 'Geometry Calculator'),
     );
   }
 }
@@ -46,10 +48,7 @@ class _MainPageState extends State<MainPage> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Center(child: Text(widget.title)),
-      ),
+      appBar: AppBar(title: Center(child: Text(widget.title))),
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(
