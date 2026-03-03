@@ -67,7 +67,7 @@ class _GeometryPageState extends State<GeometryPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text("$title Geometry"),
       ),
       body: SingleChildScrollView(
