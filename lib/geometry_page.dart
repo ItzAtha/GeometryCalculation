@@ -11,6 +11,7 @@ class GeometryPage extends StatefulWidget {
 }
 
 class _GeometryPageState extends State<GeometryPage> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController input1Controller = TextEditingController();
   TextEditingController input2Controller = TextEditingController();
 
@@ -25,62 +26,158 @@ class _GeometryPageState extends State<GeometryPage> {
               style: const TextStyle(fontSize: 16.0),
             ),
             Expanded(
-              child: TextField(
+              child: TextFormField(
                 controller: input1Controller,
                 decoration: const InputDecoration(labelText: "Side Length (s)"),
+                autocorrect: false,
+                enableSuggestions: false,
                 keyboardType: TextInputType.number,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a side length';
+                  }
+
+                  if (double.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
+                  return null;
+                },
               ),
             ),
           ],
         );
       case GeometryType.cylinder || GeometryType.cone:
-        return Row(
+        return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Radius (r)   =   ", style: const TextStyle(fontSize: 16.0)),
-            Expanded(
-              child: TextField(
-                controller: input1Controller,
-                decoration: const InputDecoration(labelText: "Radius (r)"),
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Radius (r)   =   ",
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: input1Controller,
+                    decoration: const InputDecoration(labelText: "Radius (r)"),
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a radius';
+                      }
+
+                      if (double.tryParse(value) == null) {
+                        return 'Please enter a valid number';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
             ),
-            SizedBox(width: 16.0),
-            Text("Height (h)   =   ", style: const TextStyle(fontSize: 16.0)),
-            Expanded(
-              child: TextField(
-                controller: input2Controller,
-                decoration: const InputDecoration(labelText: "Height (h)"),
-                keyboardType: TextInputType.number,
-              ),
+            SizedBox(height: 8.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Height (h)   =   ",
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: input2Controller,
+                    decoration: const InputDecoration(labelText: "Height (h)"),
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    keyboardType: TextInputType.number,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a height';
+                      }
+
+                      if (double.tryParse(value) == null) {
+                        return 'Please enter a valid number';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         );
       case GeometryType.pyramid:
-        return Row(
+        return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Base Area (B)   =   ",
-              style: const TextStyle(fontSize: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Base Area (B)   =   ",
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: input1Controller,
+                    decoration: const InputDecoration(
+                      labelText: "Base Area (B)",
+                    ),
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a base area';
+                      }
+
+                      if (double.tryParse(value) == null) {
+                        return 'Please enter a valid number';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: TextField(
-                controller: input1Controller,
-                decoration: const InputDecoration(labelText: "Base Area (B)"),
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-              ),
-            ),
-            SizedBox(width: 16.0),
-            Text("Height (h)   =   ", style: const TextStyle(fontSize: 16.0)),
-            Expanded(
-              child: TextField(
-                controller: input2Controller,
-                decoration: const InputDecoration(labelText: "Height (h)"),
-                keyboardType: TextInputType.number,
-              ),
+            SizedBox(height: 8.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Height (h)   =   ",
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Expanded(
+                  child: TextFormField(
+                    controller: input2Controller,
+                    decoration: const InputDecoration(labelText: "Height (h)"),
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    keyboardType: TextInputType.number,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a height';
+                      }
+
+                      if (double.tryParse(value) == null) {
+                        return 'Please enter a valid number';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         );
@@ -90,10 +187,23 @@ class _GeometryPageState extends State<GeometryPage> {
           children: <Widget>[
             Text("Radius (r)   =   ", style: const TextStyle(fontSize: 16.0)),
             Expanded(
-              child: TextField(
+              child: TextFormField(
                 controller: input1Controller,
                 decoration: const InputDecoration(labelText: "Radius (r)"),
+                autocorrect: false,
+                enableSuggestions: false,
                 keyboardType: TextInputType.number,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a radius';
+                  }
+
+                  if (double.tryParse(value) == null) {
+                    return 'Please enter a valid number';
+                  }
+                  return null;
+                },
               ),
             ),
           ],
@@ -166,11 +276,18 @@ class _GeometryPageState extends State<GeometryPage> {
               const SizedBox(height: 32.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: getGeometryInputFields(widget.geometryType),
+                child: Form(
+                  key: formKey,
+                  child: getGeometryInputFields(widget.geometryType),
+                ),
               ),
-              const SizedBox(height: 42.0),
+              const SizedBox(height: 32.0),
               ElevatedButton(
                 onPressed: () {
+                  if (!formKey.currentState!.validate()) {
+                    return;
+                  }
+
                   double input1 = double.tryParse(input1Controller.text) ?? 0.0;
                   double input2 = double.tryParse(input2Controller.text) ?? 0.0;
 
@@ -187,7 +304,15 @@ class _GeometryPageState extends State<GeometryPage> {
                     ],
                   );
 
-                  showDialog(context: context, builder: (context) => dialog);
+                  showDialog(
+                    context: context,
+                    animationStyle: AnimationStyle(
+                      curve: Curves.easeIn,
+                      reverseCurve: Curves.easeOut,
+                      duration: Duration(milliseconds: 300),
+                    ),
+                    builder: (context) => dialog,
+                  );
                 },
                 child: const Text("Calculate Volume"),
               ),
